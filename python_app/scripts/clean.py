@@ -2,9 +2,30 @@ import pandas as pd
 import numpy as np
 import os
 from datetime import datetime
+from sqlalchemy import create_engine, text
+import urllib
+from dotenv import load_dotenv
 
-books_file = "data/03_Library Systembook.csv"
-customers_file = "data/03_Library SystemCustomers.csv"
+# Load environment variables
+script_dir = os.path.dirname(os.path.abspath(__file__))
+dotenv_path = os.path.join(script_dir, "..", ".env")
+dotenv_path = os.path.abspath(dotenv_path)
+
+load_dotenv(dotenv_path)
+
+# Load DB credentials from .env
+server = os.getenv("DB_SERVER")
+database = os.getenv("DB_NAME")
+driver = os.getenv("DB_DRIVER")
+trusted_connection = os.getenv("DB_TRUSTED_CONNECTION", "yes")
+
+
+# Get absolute path to the directory where the script is located
+script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+books_file = os.path.join(script_dir, "data", "03_Library Systembook.csv")
+customers_file = os.path.join(script_dir, "data", "03_Library SystemCustomers.csv")
 
 # Load with fallback encoding
 try:
@@ -77,8 +98,26 @@ for col in date_cols:
         invalid_dates_fixed += invalid_dates
         books_df[col] = parsed_dates.dt.strftime('%d/%m/%Y')
 
+# Build connection string
+params = urllib.parse.quote_plus(
+    f"DRIVER={driver};"
+    f"SERVER={server};"
+    f"DATABASE={database};"
+    f"Trusted_Connection={trusted_connection};"
+)
+
+engine = create_engine(f"mssql+pyodbc:///?odbc_connect={params}")
+
+# Write books_df to SystemBook table
+books_df.to_sql('SystemBook', con=engine, if_exists='replace', index=False)
+
+# Write customers_df to SystemCustomer table
+customers_df.to_sql('SystemCustomer', con=engine, if_exists='replace', index=False)
+
+print("[INFO] Data written to SQL Server tables SystemBook and SystemCustomer")
+
 # Create cleaned folder (single folder per day)
-base_cleaned_dir = "../data/cleaned"
+base_cleaned_dir = os.path.join(script_dir, "data", "cleaned")
 today_str = datetime.today().strftime("%Y%m%d")
 dated_folder = os.path.join(base_cleaned_dir, today_str)
 os.makedirs(dated_folder, exist_ok=True)
@@ -93,7 +132,7 @@ customers_df.to_csv(clean_customers_file, index=False)
 print(f"[INFO] Cleaned books data saved to {clean_books_file}")
 print(f"[INFO] Cleaned customers data saved to {clean_customers_file}")
 
-# --- DETAILED LOGGING ---
+# --- DETAILED LOGGING TEXT FILE ---
 log_file = os.path.join(base_cleaned_dir, "cleaning_log.txt")
 with open(log_file, "a") as log:
     log_entry = (
@@ -106,4 +145,50 @@ with open(log_file, "a") as log:
     )
     log.write(log_entry)
 
-print(f"[INFO] Cleaning log updated at {log_file}")
+print(f"[INFO] Cleaning log .txt updated at {log_file}")
+
+# --- DETAILED LOGGING SQL ---
+log_df = pd.DataFrame([{
+    "Timestamp": datetime.now(),
+    "BooksRowsInitial": books_rows_initial,
+    "BooksRowsAfterEmptyDrop": books_rows_after_dropna,
+    "BooksRowsAfterDupesDrop": books_rows_after_dupes,
+    "BooksRowsAfterInvalidIDDrop": books_rows_after_dropna_ids,
+    "BooksDroppedInvalidIDs": books_dropped_invalid_ids,
+    "CustomersRowsInitial": customers_rows_initial,
+    "CustomersRowsAfterEmptyDrop": customers_rows_after_dropna,
+    "CustomersRowsAfterDupesDrop": customers_rows_after_dupes,
+    "CustomersRowsAfterInvalidIDDrop": customers_rows_after_dropna_ids,
+    "CustomersDroppedInvalidIDs": customers_dropped_invalid_ids,
+    "QuotesRemoved": quotes_removed,
+    "InvalidDatesFixed": invalid_dates_fixed
+}])
+
+# --- CREATE CLEANINGLOG TABLE IF NOT EXISTS ---
+with engine.connect() as conn:
+    conn.execute(text("""
+        IF NOT EXISTS (
+            SELECT * FROM INFORMATION_SCHEMA.TABLES 
+            WHERE TABLE_NAME = 'CleaningLog'
+        )
+        CREATE TABLE CleaningLog (
+            LogID INT IDENTITY(1,1) PRIMARY KEY,
+            Timestamp DATETIME,
+            BooksRowsInitial INT,
+            BooksRowsAfterEmptyDrop INT,
+            BooksRowsAfterDupesDrop INT,
+            BooksRowsAfterInvalidIDDrop INT,
+            BooksDroppedInvalidIDs INT,
+            CustomersRowsInitial INT,
+            CustomersRowsAfterEmptyDrop INT,
+            CustomersRowsAfterDupesDrop INT,
+            CustomersRowsAfterInvalidIDDrop INT,
+            CustomersDroppedInvalidIDs INT,
+            QuotesRemoved INT,
+            InvalidDatesFixed INT
+        )
+    """))
+
+
+log_df.to_sql("CleaningLog", con=engine, if_exists='append', index=False)
+

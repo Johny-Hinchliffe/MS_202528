@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np
 
 # Load CSV files with fallback encoding
-books_file = "../data/03_Library Systembook.csv"
-customers_file = "../data/03_Library SystemCustomers.csv"
+books_file = "data/03_Library Systembook.csv"
+customers_file = "data/03_Library SystemCustomers.csv"
 
 try:
     books_df = pd.read_csv(books_file, encoding='utf-8')
@@ -14,6 +14,21 @@ except UnicodeDecodeError:
     customers_df = pd.read_csv(customers_file, encoding='latin1')
 except Exception as e:
     print(f"🚨 Error loading CSVs: {e}")
+
+# Define expected columns
+expected_books_cols = [
+    "Id",
+    "Books",
+    "Book checkout",
+    "Book Returned",
+    "Days allowed to borrow",
+    "Customer ID"
+]
+
+expected_customers_cols = [
+    "Customer ID",
+    "Customer Name"
+]
 
 # Replace empty strings or whitespace-only strings with NaN
 books_df.replace(r'^\s*$', np.nan, regex=True, inplace=True)
