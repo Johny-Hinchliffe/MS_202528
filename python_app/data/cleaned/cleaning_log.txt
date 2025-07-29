@@ -3,3 +3,16 @@
 2025-07-28 16:33:58 | Books rows: initial=114, after empty drop=21, after duplicates drop=21, after invalid ID drop=20, dropped_invalid_ids=1 | Customers rows: initial=9, after empty drop=8, after duplicates drop=8, after invalid ID drop=8, dropped_invalid_ids=0 | Quotes removed from dates: 40 | Invalid dates fixed: 1
 2025-07-28 16:34:43 | Books rows: initial=114, after empty drop=21, after duplicates drop=21, after invalid ID drop=20, dropped_invalid_ids=1 | Customers rows: initial=9, after empty drop=8, after duplicates drop=8, after invalid ID drop=8, dropped_invalid_ids=0 | Quotes removed from dates: 40 | Invalid dates fixed: 1
 2025-07-29 10:40:38 | Books rows: initial=114, after empty drop=21, after duplicates drop=21, after invalid ID drop=20, dropped_invalid_ids=1 | Customers rows: initial=9, after empty drop=8, after duplicates drop=8, after invalid ID drop=8, dropped_invalid_ids=0 | Quotes removed from dates: 40 | Invalid dates fixed: 1
+2025-07-29 11:46:56 | Quotes removed: 40 | Invalid dates fixed: 1
+2025-07-29 11:49:28 | Quotes removed: 40 | Invalid dates fixed: 1
+2025-07-29 11:53:38 | Quotes removed: 40 | Invalid dates fixed: 1
+2025-07-29 12:10:10 | Quotes removed: 40 | Invalid dates fixed: 1
+2025-07-29 12:10:10 | Quotes removed: 40 | Invalid dates fixed: 1 | Rows removed (NULL/invalid dates): 1 | Rows removed (checkout after return): 6
+2025-07-29 12:11:44 | Quotes removed: 40 | Invalid dates fixed: 1
+2025-07-29 12:11:44 | Quotes removed: 40 | Invalid dates fixed: 1 | Rows removed (NULL/invalid dates): 1 | Rows removed (checkout after return): 6
+2025-07-29 12:13:01 | Quotes removed: 40 | Invalid dates fixed: 1
+2025-07-29 12:13:01 | Quotes removed: 40 | Invalid dates fixed: 1 | Rows removed (NULL/invalid dates): 1 | Rows removed (checkout after return): 6
+2025-07-29 12:13:42 | Quotes removed: 40 | Invalid dates fixed: 1
+2025-07-29 12:13:42 | Quotes removed: 40 | Invalid dates fixed: 1 | Rows removed (NULL/invalid dates): 1 | Rows removed (checkout after return): 6
+2025-07-29 13:30:05 | Quotes removed: 40 | Invalid dates fixed: 1
+2025-07-29 13:30:05 | Quotes removed: 40 | Invalid dates fixed: 1 | Rows removed (NULL/invalid dates): 1 | Rows removed (checkout after return): 6
