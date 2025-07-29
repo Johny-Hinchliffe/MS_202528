@@ -96,7 +96,16 @@ for col in date_cols:
         parsed_dates = pd.to_datetime(books_df[col], dayfirst=True, errors='coerce')
         invalid_dates = parsed_dates.isna().sum()
         invalid_dates_fixed += invalid_dates
-        books_df[col] = parsed_dates.dt.strftime('%d/%m/%Y')
+        books_df[col] = parsed_dates
+
+# Drop rows with NULLs in date columns
+books_df.dropna(subset=["Book checkout", "Book Returned"], inplace=True)
+
+# Add loan duration column (in days)
+books_df["LoanDurationDays"] = (books_df["Book Returned"] - books_df["Book checkout"]).dt.days
+
+# Remove rows where return date is before checkout
+books_df = books_df[books_df["LoanDurationDays"] >= 0]
 
 # Build connection string
 params = urllib.parse.quote_plus(
