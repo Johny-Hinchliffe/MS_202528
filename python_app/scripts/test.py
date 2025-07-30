@@ -7,7 +7,7 @@ from sqlalchemy import create_engine, text
 import urllib
 from dotenv import load_dotenv
 
-from appClass import EnvLoader, FileManager
+from appClass import EnvLoader, FileManager, DataCleaner
 
 import random
 
@@ -16,12 +16,12 @@ class TestOperations(unittest.TestCase):
     # Tests if environment has variables. 
     # Does not test if there is a connection and valid credentials
     def test_EnvLoader_hasVariables(self):
-
         script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         env = EnvLoader(script_dir)
 
         for key, val in env.get_db_credentials().items():
             self.assertTrue(val, f"Environment variable '{key}' is missing or blank")
+
 
     def test_FileManager_filesExist(self):
             script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,9 +32,6 @@ class TestOperations(unittest.TestCase):
             for df, name in [(books_df, 'books_df'), (customers_df, 'customers_df')]:
                 self.assertFalse(df.empty, f"{name} is empty or missing data")
 
-    
-
-    
 
 if __name__ == '__main__':
     unittest.main()
