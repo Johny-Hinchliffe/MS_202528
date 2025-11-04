@@ -1,0 +1,65 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0" version="28.2.0">
+  <diagram name="Page-1" id="cAdlwp8R4ZU6ZVAt7IT7">
+    <mxGraphModel dx="2245" dy="756" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="KWOlcQuanDs1bDttLrNq-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="KWOlcQuanDs1bDttLrNq-1" target="KWOlcQuanDs1bDttLrNq-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KWOlcQuanDs1bDttLrNq-13" value="&lt;div&gt;1*&lt;br&gt;&lt;/div&gt;T.ID = TM.TEAM_ID" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KWOlcQuanDs1bDttLrNq-12">
+          <mxGeometry x="0.18" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KWOlcQuanDs1bDttLrNq-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KWOlcQuanDs1bDttLrNq-1" target="KWOlcQuanDs1bDttLrNq-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KWOlcQuanDs1bDttLrNq-15" value="T&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start; background-color: rgb(27, 29, 30);&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22TEAM.ID%20%3D%20TEAM_MEMBER.TEAM_ID%22%20style%3D%22edgeLabel%3Bhtml%3D1%3Balign%3Dcenter%3BverticalAlign%3Dmiddle%3Bresizable%3D0%3Bpoints%3D%5B%5D%3B%22%20vertex%3D%221%22%20connectable%3D%220%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22-441%22%20y%3D%22401%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;ext" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KWOlcQuanDs1bDttLrNq-14">
+          <mxGeometry x="0.05" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KWOlcQuanDs1bDttLrNq-17" value="1-*&lt;br&gt;T.ID = TF.TEAM_ID" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KWOlcQuanDs1bDttLrNq-14">
+          <mxGeometry x="0.0444" y="2" relative="1" as="geometry">
+            <mxPoint y="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KWOlcQuanDs1bDttLrNq-1" value="TEAM&lt;div&gt;(T)&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="-510" y="460" width="140" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="KWOlcQuanDs1bDttLrNq-3" value="&lt;div&gt;TEAM_MEMBER&lt;/div&gt;&lt;div&gt;(TM)&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="-510" y="220" width="140" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="KWOlcQuanDs1bDttLrNq-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KWOlcQuanDs1bDttLrNq-4" target="KWOlcQuanDs1bDttLrNq-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KWOlcQuanDs1bDttLrNq-20" value="1-*&lt;br&gt;TF.ID = TS.TEAM_ID" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KWOlcQuanDs1bDttLrNq-19">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KWOlcQuanDs1bDttLrNq-4" value="TEAM_FORM&lt;div&gt;(TF)&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="-110" y="530" width="140" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="KWOlcQuanDs1bDttLrNq-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KWOlcQuanDs1bDttLrNq-5" target="KWOlcQuanDs1bDttLrNq-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KWOlcQuanDs1bDttLrNq-22" value="1-*&lt;br&gt;TS.ID = TSA.TEAM_SUBMISSION_ID" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KWOlcQuanDs1bDttLrNq-21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KWOlcQuanDs1bDttLrNq-5" value="TEAM_SUBMISSION&lt;div&gt;(TS)&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="350" y="390" width="150" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="KWOlcQuanDs1bDttLrNq-11" value="TEAM_SUBMISSION&lt;div&gt;_ANSWER&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="350" y="700" width="150" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="KWOlcQuanDs1bDttLrNq-18" value="TEAM_FORM_QUESTION&lt;br&gt;&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;QID,&lt;br&gt;&lt;div&gt;TEAM_ID,&lt;/div&gt;&lt;div&gt;TEAM_FORM_ID&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="520" y="100" width="200" height="200" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
